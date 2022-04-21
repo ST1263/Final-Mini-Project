@@ -26,6 +26,7 @@ namespace ProjectNS
 {
     public class Startup
     {
+        readonly string MyAllowSpecificOrigins = "_myAllowSpecificOrigins";
         public Startup(IConfiguration configuration)
         {
             Configuration = configuration;
@@ -52,7 +53,18 @@ namespace ProjectNS
             services.AddIdentity<ApplicationUser, IdentityRole>()
                 .AddEntityFrameworkStores<ApplicationDbContext>()
                 .AddDefaultTokenProviders();
+            services.AddCors(options =>
+            {
+                options.AddPolicy(name: MyAllowSpecificOrigins,
+                                  builder =>
+                                  {
+                                      builder.AllowAnyHeader();
+                                      builder.AllowAnyOrigin();
+                                      builder.AllowAnyMethod();
 
+                                      //builder.WithOrigins("http://localhost:4200/");
+                                  });
+            });
             // Adding Authentication  
             services.AddAuthentication(options =>
             {
@@ -116,7 +128,7 @@ namespace ProjectNS
             }
 
             app.UseHttpsRedirection();
-
+            app.UseCors(MyAllowSpecificOrigins);
             app.UseRouting();
             app.UseAuthentication();
             app.UseAuthorization();
