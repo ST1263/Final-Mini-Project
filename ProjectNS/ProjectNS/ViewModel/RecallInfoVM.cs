@@ -17,13 +17,10 @@ namespace ProjectNS.ViewModel
         public string FDAClassification { get; set; }
         public string RecallCategories { get; set; }
         public string RecallStatus { get; set; }
-        public string MarkAsUrgent { get; set; }
-        public string CustomizeedContent { get; set; }
-        public string SupplierVoluntary { get; set; }
-        public string RegulatoryMandate { get; set; }
+        public bool MarkAsUrgent { get; set; }
+        public bool CustomizeedContent { get; set; }
+        public string SupplierVoluntaryRegulatoryMandate { get; set; }
         public string SupportingMaterial { get; set; }
         public string Description { get; set; }
-
-       /* public List<RecallCategories> RecallCategoriesList { get; set; }*/
-}
+    }
 }

@@ -3,15 +3,17 @@ using System;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 using ProjectNS.Data;
 
 namespace ProjectNS.Migrations.NSDb
 {
     [DbContext(typeof(NSDbContext))]
-    partial class NSDbContextModelSnapshot : ModelSnapshot
+    [Migration("20220422074326_changetypes")]
+    partial class changetypes
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -82,6 +84,7 @@ namespace ProjectNS.Migrations.NSDb
                         .HasColumnType("nvarchar(30)");
 
                     b.Property<bool>("MarkAsUrgent")
+                        .HasMaxLength(30)
                         .HasColumnType("bit");
 
                     b.Property<string>("RecallCategories")

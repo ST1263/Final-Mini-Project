@@ -3,15 +3,17 @@ using System;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 using ProjectNS.Data;
 
 namespace ProjectNS.Migrations.NSDb
 {
     [DbContext(typeof(NSDbContext))]
-    partial class NSDbContextModelSnapshot : ModelSnapshot
+    [Migration("20220422074400_changedatatypes")]
+    partial class changedatatypes
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder

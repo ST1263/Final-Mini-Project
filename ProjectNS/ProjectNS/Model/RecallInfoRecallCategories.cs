@@ -9,13 +9,13 @@ namespace ProjectNS.Model
 {
     public class RecallInfoRecallCategories
     {
-        [Key]
+/*        [Key]
         public int RecallInfoRecallCategoriesId { get; set; }
         [ForeignKey("RecallInfo")]
         public int RecallInfoId { get; set; }
         [ForeignKey("RecallCategories")]
         public int RecallCategoriesId { get; set; }
         public virtual RecallInfo RecallInfo { get; set; }
-        public virtual RecallCategories RecallCategories { get; set; }
+        public virtual RecallCategories RecallCategories { get; set; }*/
     }
 }

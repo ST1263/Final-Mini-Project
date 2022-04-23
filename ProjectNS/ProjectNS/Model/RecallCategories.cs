@@ -12,8 +12,6 @@ namespace ProjectNS.Model
         public string RecallCategoriesName { get; set; }
         [MaxLength(255)]
         public string Description { get; set; }
-/*        public int RecallInfoId { get; set; }*/
         public virtual RecallInfo RecallInfo { get; set; }
-
     }
 }

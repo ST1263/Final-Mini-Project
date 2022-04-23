@@ -39,8 +39,7 @@ namespace ProjectNS.Service
                 RecallStatus = recallInfoVM.RecallStatus,
                 MarkAsUrgent = recallInfoVM.MarkAsUrgent,
                 CustomizeedContent = recallInfoVM.CustomizeedContent,
-                SupplierVoluntary = recallInfoVM.SupplierVoluntary,
-                RegulatoryMandate = recallInfoVM.RegulatoryMandate,
+                SupplierVoluntaryRegulatoryMandate = recallInfoVM.SupplierVoluntaryRegulatoryMandate,
                 SupportingMaterial = recallInfoVM.SupportingMaterial,
                 Description = recallInfoVM.Description,
             };
@@ -63,8 +62,7 @@ namespace ProjectNS.Service
                 RecallStatus = recallInfoVM.RecallStatus,
                 MarkAsUrgent = recallInfoVM.MarkAsUrgent,
                 CustomizeedContent = recallInfoVM.CustomizeedContent,
-                SupplierVoluntary = recallInfoVM.SupplierVoluntary,
-                RegulatoryMandate = recallInfoVM.RegulatoryMandate,
+                SupplierVoluntaryRegulatoryMandate = recallInfoVM.SupplierVoluntaryRegulatoryMandate,
                 SupportingMaterial = recallInfoVM.SupportingMaterial,
                 Description = recallInfoVM.Description,
             };

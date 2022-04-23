@@ -18,6 +18,7 @@ namespace ProjectNS.Repo
 
         public List<RecallInfoVM> GetRecallInfos()
         {
+
             // return _context.RecallInfo.ToList();
             var result = (from a in _context.RecallInfo
                           select new RecallInfoVM
@@ -33,8 +34,7 @@ namespace ProjectNS.Repo
                               RecallStatus = a.RecallStatus,
                               MarkAsUrgent = a.MarkAsUrgent,
                               CustomizeedContent = a.CustomizeedContent,
-                              SupplierVoluntary = a.SupplierVoluntary,
-                              RegulatoryMandate = a.RegulatoryMandate,
+                              SupplierVoluntaryRegulatoryMandate = a.SupplierVoluntaryRegulatoryMandate,
                               SupportingMaterial = a.SupportingMaterial,
                               Description = a.Description,
                              /* RecallCategoriesList = a.RecallCategorieas.ToList()*/

@@ -6,10 +6,6 @@ namespace ProjectNS.Model
 {
     public class RecallInfo
     {
-      /*  public RecallInfo()
-        {
-            RecallCategorieas = new HashSet<RecallCategories>();
-        }*/
         [Key]
         public int RecallInfoId { get; set; }
         public int RecallId { get; set; }
@@ -25,14 +21,10 @@ namespace ProjectNS.Model
         public string RecallCategories { get; set; }
         [MaxLength(30)]
         public string RecallStatus { get; set; }
+        public bool MarkAsUrgent { get; set; }
+        public bool CustomizeedContent { get; set; }
         [MaxLength(30)]
-        public string MarkAsUrgent { get; set; }
-        [MaxLength(30)]
-        public string CustomizeedContent { get; set; }
-        [MaxLength(30)]
-        public string SupplierVoluntary { get; set; }
-        [MaxLength(30)]
-        public string RegulatoryMandate { get; set; }
+        public string SupplierVoluntaryRegulatoryMandate { get; set; }
         [MaxLength(255)]
         public string SupportingMaterial { get; set; }
         public string Description { get; set; }

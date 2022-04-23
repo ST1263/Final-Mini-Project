@@ -17,6 +17,5 @@ namespace ProjectNS.Data
         public DbSet<FDAClassification> FDAClassification { get; set; }
         public DbSet<RecallCategories> RecallCategories { get; set; }
         public DbSet<RecallInfo> RecallInfo { get; set; }
-       /* public DbSet<RecallInfoRecallCategories> RecallInfoRecallCategories { get; set; }*/
     }
 }

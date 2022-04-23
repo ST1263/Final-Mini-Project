@@ -10,6 +10,5 @@ namespace ProjectNS.ViewModel
         public int RecallTypeId { get; set; }
         public string RecallTypeName { get; set; }
         public string Description { get; set; }
-  /*      public int RecallInfoId { get; set; }*/
     }
 }

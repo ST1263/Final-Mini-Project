@@ -10,6 +10,5 @@ namespace ProjectNS.ViewModel
         public int FDAClassificationId { get; set; }
         public string FdaClassificationName { get; set; }
         public string Description { get; set; }
-       /* public int RecallInfoId { get; set; }*/
     }
 }
