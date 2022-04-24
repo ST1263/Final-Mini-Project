@@ -17,7 +17,6 @@ namespace ProjectNS.Repo
 
         public List<FDAClassificationVM> GetFDAClassifications()
         {
-            // return _context.FDAClassification.ToList();
             var result = (from a in _context.FDAClassification
                           select new FDAClassificationVM
                           {
@@ -35,8 +34,6 @@ namespace ProjectNS.Repo
 
         public FDAClassification AddFDAClassification(FDAClassification fDAClassification)
         {
-            /*_context.Add(fDAClassification);
-            _context.SaveChanges();*/
             _context.Add(fDAClassification);
             _context.SaveChanges();
             return fDAClassification;
@@ -44,8 +41,6 @@ namespace ProjectNS.Repo
 
         public FDAClassification UpdateFDAClassification(FDAClassification fDAClassification)
         {
-            /* _context.Update(fDAClassification);
-             _context.SaveChanges();*/
             _context.Update(fDAClassification);
             _context.SaveChanges();
             return fDAClassification;

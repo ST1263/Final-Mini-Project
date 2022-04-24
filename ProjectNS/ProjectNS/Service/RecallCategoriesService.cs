@@ -31,8 +31,7 @@ namespace ProjectNS.Service
                 RecallCategoriesId = recallCategoriesVM.RecallCategoriesId,
                 RecallCategoriesName = recallCategoriesVM.RecallCategoriesName,
                 Description = recallCategoriesVM.Description,
-                /*RecallInfoId = recallCategoriesVM.RecallInfoId  
-*/            };
+            };
             var addrecallcategories = _recallcategoriesservice.AddRecallCategories(recallCategories);
             return addrecallcategories;
         }

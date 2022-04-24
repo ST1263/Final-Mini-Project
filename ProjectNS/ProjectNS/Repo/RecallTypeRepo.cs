@@ -18,7 +18,6 @@ namespace ProjectNS.Repo
 
         public List<RecallTypeVM> GetRecallTypes()
         {
-            // return _context.RecallType.ToList();
             var result = (from a in _context.RecallType
                           select new RecallTypeVM
                           {
@@ -36,8 +35,6 @@ namespace ProjectNS.Repo
 
         public RecallType AddRecallType(RecallType recallType)
         {
-            /* _context.Add(recallType);
-             _context.SaveChanges();*/
             _context.Add(recallType);
             _context.SaveChanges();
             return recallType;
@@ -45,8 +42,6 @@ namespace ProjectNS.Repo
 
         public RecallType UpdateRecallType(RecallType recallType)
         {
-            /*_context.Update(recallType);
-            _context.SaveChanges();*/
             _context.Update(recallType);
             _context.SaveChanges();
             return recallType;

@@ -17,14 +17,12 @@ namespace ProjectNS.Repo
 
         public List<RecallCategoriesVM> GetRecallCategories()
         {
-            // return _context.RecallCategories.ToList();
             var result = (from a in _context.RecallCategories
                           select new RecallCategoriesVM
                           {
                               RecallCategoriesId = a.RecallCategoriesId,
                               RecallCategoriesName = a.RecallCategoriesName,
                               Description = a.Description,
-                              /*RecallInfoId = a.RecallInfoId*/
                           }).ToList();
             return result;
         }
@@ -36,8 +34,6 @@ namespace ProjectNS.Repo
 
         public RecallCategories AddRecallCategories(RecallCategories recallCategories)
         {
-            /* _context.Add(recallCategories);
-             _context.SaveChanges();*/
             _context.Add(recallCategories);
             _context.SaveChanges();
             return recallCategories;
@@ -45,8 +41,6 @@ namespace ProjectNS.Repo
 
         public RecallCategories UpdateRecallCategories(RecallCategories recallCategories)
         {
-            /*_context.Update(recallCategories);
-            _context.SaveChanges();*/
             _context.Update(recallCategories);
             _context.SaveChanges();
             return recallCategories;

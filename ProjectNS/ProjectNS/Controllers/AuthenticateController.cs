@@ -86,9 +86,5 @@ namespace ProjectNS.Controllers
 
             return Ok(new Response { Status = "Success", Message = "User created successfully!" });
         }
-        /* public IActionResult Index()
-         {
-             return View();
-         }*/
     }
 }

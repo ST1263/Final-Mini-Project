@@ -18,8 +18,6 @@ namespace ProjectNS.Repo
 
         public List<RecallInfoVM> GetRecallInfos()
         {
-
-            // return _context.RecallInfo.ToList();
             var result = (from a in _context.RecallInfo
                           select new RecallInfoVM
                           {
@@ -37,28 +35,8 @@ namespace ProjectNS.Repo
                               SupplierVoluntaryRegulatoryMandate = a.SupplierVoluntaryRegulatoryMandate,
                               SupportingMaterial = a.SupportingMaterial,
                               Description = a.Description,
-                             /* RecallCategoriesList = a.RecallCategorieas.ToList()*/
-
                           }).ToList();
             return result;
-            /*  var result = _context.RecallInfo.Select(a => new RecallInfoVM
-              {
-                  RecallInfoId = a.RecallInfoId,
-                  RecallId = a.RecallId,
-                  RecallName = a.RecallName,
-                  RecallType = a.RecallType,
-                  RecallDate = a.RecallDate,
-                  ZNumber = a.ZNumber,
-                  FDAClassification = a.FDAClassification,
-                  RecallCategories = a.RecallCategories,
-                  RecallStatus = a.RecallStatus,
-                  MarkAsUrgent = a.MarkAsUrgent,
-                  CustomizeedContent = a.CustomizeedContent,
-                  SupplierVoluntary = a.SupplierVoluntary,
-                  RegulatoryMandate = a.RegulatoryMandate,
-                  SupportingMaterial = a.SupportingMaterial,
-              }).ToList();
-              return result;*/
         }
 
         public RecallInfo GetRecallInfoById(int RecallinfoId)
@@ -68,8 +46,6 @@ namespace ProjectNS.Repo
 
         public RecallInfo AddRecallInfo(RecallInfo recallInfo)
         {
-            /*_context.Add(recallInfo);
-            _context.SaveChanges();*/
             _context.Add(recallInfo);
             _context.SaveChanges();
             return recallInfo;
@@ -77,8 +53,6 @@ namespace ProjectNS.Repo
 
         public RecallInfo UpdateRecallInfo(RecallInfo recallInfo)
         {
-            /*_context.Update(recallInfo);
-            _context.SaveChanges();*/
             _context.Update(recallInfo);
             _context.SaveChanges();
             return recallInfo;

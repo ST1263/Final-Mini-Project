@@ -7,7 +7,6 @@ using System;
 
 namespace ProjectNS.Controllers
 {
-    /*[Authorize]*/
     [Route("api/[controller]")]
     [ApiController]
     public class FDAClassificationController : Controller
@@ -43,10 +42,8 @@ namespace ProjectNS.Controllers
                 if (!ModelState.IsValid)
                 {
                     return StatusCode(StatusCodes.Status500InternalServerError, new Response { Status = "Error", Message = "FDA Classification Details Failed! Please check your details and try again." });
-                    //return BadRequest();
                 }
                 _fdaclassificationservice.AddFDAClassification(fDAClassification);
-                //return Ok();
                 return Ok(new Response { Status = "Success", Message = "FDA Classification Details Add successfully!" });
             }
             catch (Exception ex)
@@ -64,11 +61,9 @@ namespace ProjectNS.Controllers
                 if (!ModelState.IsValid)
                 {
                     return StatusCode(StatusCodes.Status500InternalServerError, new Response { Status = "Error", Message = "Update Failed! Please check your details and try again." });
-                    //return BadRequest();
                 }
                 _fdaclassificationservice.UpdateFDAClassification(fDAClassification);
                 return Ok(new Response { Status = "Success", Message = "Update FDA Classification Details successfully!" });
-                //return Ok();
             }
             catch (Exception ex)
             {
@@ -85,20 +80,14 @@ namespace ProjectNS.Controllers
                 if (!ModelState.IsValid)
                 {
                     return StatusCode(StatusCodes.Status500InternalServerError, new Response { Status = "Error", Message = "Delete Failed! Please check your details and try again." });
-                    //return BadRequest();
                 }
                 _fdaclassificationservice.DeleteFDAClassification(FDAClassificationId);
                 return Ok(new Response { Status = "Success", Message = "Delete FDA Classification Details Delete successfully!" });
-                //return Ok();
             }
             catch (Exception ex)
             {
                 return NotFound(ex.Message);
             }
         }
-        /* public IActionResult Index()
-         {
-             return View();
-         }*/
     }
 }
