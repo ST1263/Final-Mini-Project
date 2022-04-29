@@ -1,4 +1,5 @@
-﻿using Microsoft.EntityFrameworkCore;
+﻿using Microsoft.AspNetCore.Hosting;
+using Microsoft.EntityFrameworkCore;
 using ProjectNS.Data;
 using ProjectNS.Interface;
 using ProjectNS.Model;
@@ -11,14 +12,16 @@ namespace ProjectNS.Repo
     public class RecallInfoRepo:IRecallInfo
     {
         NSDbContext _context;
+        
         public RecallInfoRepo(NSDbContext context)
         {
             _context = context;
+            
         }
 
         public List<RecallInfoVM> GetRecallInfos()
         {
-            var result = (from a in _context.RecallInfo
+            return (from a in _context.RecallInfo
                           select new RecallInfoVM
                           {
                               RecallInfoId = a.RecallInfoId,
@@ -36,8 +39,7 @@ namespace ProjectNS.Repo
                               SupportingMaterial = a.SupportingMaterial,
                               Description = a.Description,
                           }).ToList();
-            return result;
-        }
+        }   
 
         public RecallInfo GetRecallInfoById(int RecallinfoId)
         {

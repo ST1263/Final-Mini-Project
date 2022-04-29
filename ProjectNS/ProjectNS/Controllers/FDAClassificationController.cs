@@ -11,7 +11,7 @@ namespace ProjectNS.Controllers
     [ApiController]
     public class FDAClassificationController : Controller
     {
-        FDAClassificationService _fdaclassificationservice;
+        readonly FDAClassificationService _fdaclassificationservice;
         public FDAClassificationController(FDAClassificationService fdaclassificationservice)
         {
             _fdaclassificationservice = fdaclassificationservice;

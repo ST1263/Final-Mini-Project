@@ -11,7 +11,7 @@ namespace ProjectNS.Controllers
     [ApiController]
     public class RecallTypeController : Controller
     {
-        RecallTypeService _recalltypeservice;
+        readonly RecallTypeService _recalltypeservice;
         public RecallTypeController(RecallTypeService recalltypeservice)
         {
             _recalltypeservice = recalltypeservice;

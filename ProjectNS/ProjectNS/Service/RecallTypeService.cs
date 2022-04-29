@@ -32,8 +32,7 @@ namespace ProjectNS.Service
                 RecallTypeName = recallTypeVM.RecallTypeName,
                 Description = recallTypeVM.Description,
             };
-            var addrecalltype =_recalltypeservice.AddRecallType(recallType);
-            return addrecalltype;
+            return _recalltypeservice.AddRecallType(recallType);
         }
 
         public RecallType UpdateRecallType(RecallTypeVM recallTypeVM)
@@ -44,8 +43,7 @@ namespace ProjectNS.Service
                 RecallTypeName = recallTypeVM.RecallTypeName,
                 Description = recallTypeVM.Description
             };
-            var updaterecalltype =_recalltypeservice.UpdateRecallType(recallType);
-            return updaterecalltype;
+            return _recalltypeservice.UpdateRecallType(recallType);
         }
 
         public void DeleteRecallType(int RecallTypeId)

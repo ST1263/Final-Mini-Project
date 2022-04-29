@@ -17,14 +17,13 @@ namespace ProjectNS.Repo
 
         public List<FDAClassificationVM> GetFDAClassifications()
         {
-            var result = (from a in _context.FDAClassification
+            return (from a in _context.FDAClassification
                           select new FDAClassificationVM
                           {
                               FDAClassificationId = a.FDAClassificationId,
                               FdaClassificationName = a.FdaClassificationName,
                               Description = a.Description
                           }).ToList();
-            return result;
         }
 
         public FDAClassification GetFDAClassificationById(int FDAClassificationId)

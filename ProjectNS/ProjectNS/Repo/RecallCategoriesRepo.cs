@@ -17,14 +17,13 @@ namespace ProjectNS.Repo
 
         public List<RecallCategoriesVM> GetRecallCategories()
         {
-            var result = (from a in _context.RecallCategories
-                          select new RecallCategoriesVM
-                          {
-                              RecallCategoriesId = a.RecallCategoriesId,
-                              RecallCategoriesName = a.RecallCategoriesName,
-                              Description = a.Description,
-                          }).ToList();
-            return result;
+            return (from a in _context.RecallCategories
+                    select new RecallCategoriesVM
+                    {
+                        RecallCategoriesId = a.RecallCategoriesId,
+                        RecallCategoriesName = a.RecallCategoriesName,
+                        Description = a.Description,
+                    }).ToList();
         }
 
         public RecallCategories GetRecallCategoriesById(int RecallCategoriesId)

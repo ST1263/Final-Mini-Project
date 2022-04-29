@@ -32,8 +32,7 @@ namespace ProjectNS.Service
                 FdaClassificationName = fDAClassificationVM.FdaClassificationName,
                 Description = fDAClassificationVM.Description,
             };
-            var addfdaclassification =_fdaclassificationservice.AddFDAClassification(fDAClassification);
-            return addfdaclassification;
+            return _fdaclassificationservice.AddFDAClassification(fDAClassification);
         }
 
         public FDAClassification UpdateFDAClassification(FDAClassificationVM fDAClassificationVM)
@@ -44,8 +43,7 @@ namespace ProjectNS.Service
                 FdaClassificationName = fDAClassificationVM.FdaClassificationName,
                 Description = fDAClassificationVM.Description
             };
-            var updatefdaclassification = _fdaclassificationservice.UpdateFDAClassification(fDAClassification);
-            return updatefdaclassification;
+            return _fdaclassificationservice.UpdateFDAClassification(fDAClassification);
         }
 
         public void DeleteFDAClassification(int FDAClassificationId)

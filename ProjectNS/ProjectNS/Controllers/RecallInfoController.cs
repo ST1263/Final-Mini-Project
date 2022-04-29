@@ -4,6 +4,8 @@ using ProjectNS.Model;
 using ProjectNS.Service;
 using ProjectNS.ViewModel;
 using System;
+using System.IO;
+using System.Net.Http.Headers;
 
 namespace ProjectNS.Controllers
 {
@@ -11,7 +13,7 @@ namespace ProjectNS.Controllers
     [ApiController]
     public class RecallInfoController : Controller
     {
-        RecallInfoService _recallinfoservice;
+        readonly RecallInfoService _recallinfoservice;
         public RecallInfoController(RecallInfoService recallinfoservice)
         {
             _recallinfoservice = recallinfoservice;
@@ -43,6 +45,24 @@ namespace ProjectNS.Controllers
                 {
                     return StatusCode(StatusCodes.Status500InternalServerError, new Response { Status = "Error", Message = "RecallInfo Details Failed! Please check your details and try again." });
                 }
+                /*var file = Request.Form.Files[0];
+                var folderName = Path.Combine("Resources", "Images");
+                var pathToSave = Path.Combine(Directory.GetCurrentDirectory(), folderName);
+                if (file.Length > 0)
+                {
+                    var fileName = ContentDispositionHeaderValue.Parse(file.ContentDisposition).FileName.Trim('"');
+                    var fullPath = Path.Combine(pathToSave, fileName);
+                    var dbPath = Path.Combine(folderName, fileName);
+                    using (var stream = new FileStream(fullPath, FileMode.Create))
+                    {
+                        file.CopyTo(stream);
+                    }
+                   
+                }*/
+               /* else
+                {
+                    return BadRequest();
+                }*/
                 _recallinfoservice.AddRecallInfo(recallInfo);
                 return Ok(new Response { Status = "Success", Message = "RecallInfo Details Add successfully!" });
             }

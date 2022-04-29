@@ -32,8 +32,7 @@ namespace ProjectNS.Service
                 RecallCategoriesName = recallCategoriesVM.RecallCategoriesName,
                 Description = recallCategoriesVM.Description,
             };
-            var addrecallcategories = _recallcategoriesservice.AddRecallCategories(recallCategories);
-            return addrecallcategories;
+            return _recallcategoriesservice.AddRecallCategories(recallCategories);
         }
 
         public RecallCategories UpdateRecallCategories(RecallCategoriesVM recallCategoriesVM)
@@ -44,8 +43,7 @@ namespace ProjectNS.Service
                 RecallCategoriesName = recallCategoriesVM.RecallCategoriesName,
                 Description = recallCategoriesVM.Description
             };
-            var updaterecallcategories = _recallcategoriesservice.UpdateRecallCategories(recallCategories);
-            return updaterecallcategories;
+            return _recallcategoriesservice.UpdateRecallCategories(recallCategories);
         }
 
         public void DeleteRecallCategories(int RecallCategoriesId)

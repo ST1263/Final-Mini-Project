@@ -18,14 +18,13 @@ namespace ProjectNS.Repo
 
         public List<RecallTypeVM> GetRecallTypes()
         {
-            var result = (from a in _context.RecallType
+            return (from a in _context.RecallType
                           select new RecallTypeVM
                           {
                               RecallTypeId = a.RecallTypeId,
                               RecallTypeName = a.RecallTypeName,
                               Description = a.Description
                           }).ToList();
-            return result;
         }
 
         public RecallType GetRecallTypeById(int RecallTypeId)

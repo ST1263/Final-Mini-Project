@@ -11,7 +11,7 @@ namespace ProjectNS.Controllers
     [ApiController]
     public class RecallCategoriesController : Controller
     {
-        RecallCategoriesService _recallcategoriesservice;
+        readonly RecallCategoriesService _recallcategoriesservice;
         public RecallCategoriesController(RecallCategoriesService recallcategoriesservice)
         {
             _recallcategoriesservice = recallcategoriesservice;
