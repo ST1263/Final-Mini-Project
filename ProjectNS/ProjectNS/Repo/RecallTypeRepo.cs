@@ -10,13 +10,13 @@ namespace ProjectNS.Repo
 {
     public class RecallTypeRepo : IRecallType
     {
-        NSDbContext _context;
+        private readonly NSDbContext _context;
         public RecallTypeRepo(NSDbContext context)
         {
             _context = context;
         }
 
-        public List<RecallTypeVM> GetRecallTypes()
+        public List<RecallTypeVM> RecallTypes()
         {
             return (from a in _context.RecallType
                           select new RecallTypeVM
@@ -27,7 +27,7 @@ namespace ProjectNS.Repo
                           }).ToList();
         }
 
-        public RecallType GetRecallTypeById(int RecallTypeId)
+        public RecallType RecallTypeById(int RecallTypeId)
         {
             return _context.RecallType.FirstOrDefault(a => a.RecallTypeId == RecallTypeId);
         }

@@ -11,26 +11,40 @@ namespace ProjectNS.Controllers
     [ApiController]
     public class RecallCategoriesController : Controller
     {
-        readonly RecallCategoriesService _recallcategoriesservice;
+        private readonly RecallCategoriesService _recallcategoriesservice;
         public RecallCategoriesController(RecallCategoriesService recallcategoriesservice)
         {
             _recallcategoriesservice = recallcategoriesservice;
         }
 
         [HttpGet]
-        [Route("GetRecallCategories")]
-        public IActionResult GetRecallCategories()
+        [Route("RecallCategories")]
+        public IActionResult RecallCategories()
         {
-            var allrecallcategories = _recallcategoriesservice.GetRecallCategories();
-            return Ok(allrecallcategories);
+            try
+            {
+                var recallcategorieslist = _recallcategoriesservice.RecallCategories();
+                return StatusCode(StatusCodes.Status200OK, recallcategorieslist);
+            }
+            catch (Exception)
+            {
+                return StatusCode(StatusCodes.Status404NotFound, new Response { Status = "Faild", Message = "Data Not Found!" });
+            }
         }
 
         [HttpGet]
-        [Route("GetRecallCategoriesById")]
-        public IActionResult GetRecallCategoriesById(int RecallCategoriesId)
+        [Route("RecallCategoriesById")]
+        public IActionResult RecallCategoriesById(int RecallCategoriesId)
         {
-            var result = _recallcategoriesservice.GetRecallCategoriesById(RecallCategoriesId);
-            return Ok(result);
+            try
+            {
+                var recallcategorie = _recallcategoriesservice.RecallCategoriesById(RecallCategoriesId);
+                return StatusCode(StatusCodes.Status200OK, recallcategorie);
+            }
+            catch (Exception)
+            {
+                return StatusCode(StatusCodes.Status404NotFound, new Response { Status = "Faild", Message = "Data Not Found!" });
+            }
         }
 
         [HttpPost]
@@ -39,16 +53,12 @@ namespace ProjectNS.Controllers
         {
             try
             {
-                if (!ModelState.IsValid)
-                {
-                    return StatusCode(StatusCodes.Status500InternalServerError, new Response { Status = "Error", Message = "RecallCategories Details Failed! Please check your details and try again." });
-                }
                 _recallcategoriesservice.AddRecallCategories(recallCategories);
-                return Ok(new Response { Status = "Success", Message = "RecallCategories Details Add successfully!" });
+                return StatusCode(StatusCodes.Status200OK, new Response { Status = "Success", Message = "Details Added Successfully!" });
             }
-            catch (Exception ex)
+            catch (Exception)
             {
-                return NotFound(ex.Message);
+                return StatusCode(StatusCodes.Status404NotFound, new Response { Status = "Faild", Message = "Data Not Found!" });
             }
         }
 
@@ -58,16 +68,12 @@ namespace ProjectNS.Controllers
         {
             try
             {
-                if (!ModelState.IsValid)
-                {
-                    return StatusCode(StatusCodes.Status500InternalServerError, new Response { Status = "Error", Message = "Update Failed! Please check your details and try again." });
-                }
                 _recallcategoriesservice.UpdateRecallCategories(recallCategories);
-                return Ok(new Response { Status = "Success", Message = "Update RecallCategories Details successfully!" });
+                return StatusCode(StatusCodes.Status200OK, new Response { Status = "Success", Message = "Details Updated Successfully!" });
             }
-            catch (Exception ex)
+            catch (Exception)
             {
-                return NotFound(ex.Message);
+                return StatusCode(StatusCodes.Status404NotFound, new Response { Status = "Faild", Message = "Data Not Found!" });
             }
         }
 
@@ -77,16 +83,12 @@ namespace ProjectNS.Controllers
         {
             try
             {
-                if (!ModelState.IsValid)
-                {
-                    return StatusCode(StatusCodes.Status500InternalServerError, new Response { Status = "Error", Message = "Delete Failed! Please check your details and try again." });
-                }
                 _recallcategoriesservice.DeleteRecallCategories(RecallCategoriesId);
-                return Ok(new Response { Status = "Success", Message = "Delete RecallCategories Details Delete successfully!" });
+                return StatusCode(StatusCodes.Status200OK, new Response { Status = "Success", Message = "Details Deleted Successfully!" });
             }
-            catch (Exception ex)
+            catch (Exception)
             {
-                return NotFound(ex.Message);
+                return StatusCode(StatusCodes.Status404NotFound, new Response { Status = "Faild", Message = "Data Not Found!" });
             }
         }
     }

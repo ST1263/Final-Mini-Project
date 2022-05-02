@@ -9,13 +9,13 @@ namespace ProjectNS.Repo
 {
     public class FDAClassificationRepo:IFDAClassification
     {
-        NSDbContext _context;
+        private readonly NSDbContext _context;
         public FDAClassificationRepo(NSDbContext context)
         {
             _context = context;
         }
 
-        public List<FDAClassificationVM> GetFDAClassifications()
+        public List<FDAClassificationVM> FDAClassifications()
         {
             return (from a in _context.FDAClassification
                           select new FDAClassificationVM
@@ -26,7 +26,7 @@ namespace ProjectNS.Repo
                           }).ToList();
         }
 
-        public FDAClassification GetFDAClassificationById(int FDAClassificationId)
+        public FDAClassification FDAClassificationById(int FDAClassificationId)
         {
             return _context.FDAClassification.FirstOrDefault(a => a.FDAClassificationId == FDAClassificationId);
         }

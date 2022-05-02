@@ -1,5 +1,6 @@
 ﻿using Microsoft.AspNetCore.Hosting;
 using ProjectNS.Interface;
+using ProjectNS.InterfaceService;
 using ProjectNS.Model;
 using ProjectNS.ViewModel;
 using System;
@@ -9,24 +10,22 @@ using System.Linq;
 
 namespace ProjectNS.Service
 {
-    public class RecallInfoService
+    public class RecallInfoService:IRecallInfoService
     {
-        IRecallInfo _recallinfoservice;
-        private readonly IWebHostEnvironment _hostingEnvironment;
-        public RecallInfoService(IRecallInfo recallinfoservice, IWebHostEnvironment hostingEnvironment)
+        private readonly IRecallInfo _recallinfoservice;
+        public RecallInfoService(IRecallInfo recallinfoservice)
         {
             _recallinfoservice = recallinfoservice;
-            _hostingEnvironment = hostingEnvironment;
         }
 
-        public List<RecallInfoVM> GetRecallInfos()
+        public List<RecallInfoVM> RecallInfos()
         {
-            return _recallinfoservice.GetRecallInfos().ToList();
+            return _recallinfoservice.RecallInfos().ToList();
         }
 
-        public RecallInfo GetRecallInfoById(int RecallinfoId)
+        public RecallInfo RecallInfoById(int RecallinfoId)
         {
-            return _recallinfoservice.GetRecallInfoById(RecallinfoId);
+            return _recallinfoservice.RecallInfoById(RecallinfoId);
         }
 
         public RecallInfo AddRecallInfo(RecallInfoVM recallInfoVM)

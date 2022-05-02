@@ -4,8 +4,6 @@ using ProjectNS.Model;
 using ProjectNS.Service;
 using ProjectNS.ViewModel;
 using System;
-using System.IO;
-using System.Net.Http.Headers;
 
 namespace ProjectNS.Controllers
 {
@@ -13,26 +11,40 @@ namespace ProjectNS.Controllers
     [ApiController]
     public class RecallInfoController : Controller
     {
-        readonly RecallInfoService _recallinfoservice;
+        private readonly RecallInfoService _recallinfoservice;
         public RecallInfoController(RecallInfoService recallinfoservice)
         {
             _recallinfoservice = recallinfoservice;
         }
 
         [HttpGet]
-        [Route("GetRecallInfos")]
-        public IActionResult GetRecallInfos()
+        [Route("RecallInfos")]
+        public IActionResult RecallInfos()
         {
-            var allrecallinfo = _recallinfoservice.GetRecallInfos();
-            return Ok(allrecallinfo);
+            try
+            {
+                var recallinfolist = _recallinfoservice.RecallInfos();
+                return StatusCode(StatusCodes.Status200OK, recallinfolist);
+            }
+            catch (Exception)
+            {
+                return StatusCode(StatusCodes.Status404NotFound, new Response { Status = "Faild", Message = "Data Not Found!" });
+            }
         }
 
         [HttpGet]
-        [Route("GetRecallInfoById")]
-        public IActionResult GetRecallInfoById(int RecallinfoId)
+        [Route("RecallInfoById")]
+        public IActionResult RecallInfoById(int RecallinfoId)
         {
-            var result = _recallinfoservice.GetRecallInfoById(RecallinfoId);
-            return Ok(result);
+            try
+            {
+                var recallInfo = _recallinfoservice.RecallInfoById(RecallinfoId);
+                return StatusCode(StatusCodes.Status200OK, recallInfo);
+            }
+            catch (Exception)
+            {
+                return StatusCode(StatusCodes.Status404NotFound, new Response { Status = "Faild", Message = "Data Not Found!" });
+            }
         }
 
         [HttpPost]
@@ -41,34 +53,12 @@ namespace ProjectNS.Controllers
         {
             try
             {
-                if (!ModelState.IsValid)
-                {
-                    return StatusCode(StatusCodes.Status500InternalServerError, new Response { Status = "Error", Message = "RecallInfo Details Failed! Please check your details and try again." });
-                }
-                /*var file = Request.Form.Files[0];
-                var folderName = Path.Combine("Resources", "Images");
-                var pathToSave = Path.Combine(Directory.GetCurrentDirectory(), folderName);
-                if (file.Length > 0)
-                {
-                    var fileName = ContentDispositionHeaderValue.Parse(file.ContentDisposition).FileName.Trim('"');
-                    var fullPath = Path.Combine(pathToSave, fileName);
-                    var dbPath = Path.Combine(folderName, fileName);
-                    using (var stream = new FileStream(fullPath, FileMode.Create))
-                    {
-                        file.CopyTo(stream);
-                    }
-                   
-                }*/
-               /* else
-                {
-                    return BadRequest();
-                }*/
                 _recallinfoservice.AddRecallInfo(recallInfo);
-                return Ok(new Response { Status = "Success", Message = "RecallInfo Details Add successfully!" });
+                return StatusCode(StatusCodes.Status200OK, new Response { Status = "Success", Message = "Details Added Successfully!" });
             }
-            catch (Exception ex)
+            catch (Exception)
             {
-                return NotFound(ex.Message);
+                return StatusCode(StatusCodes.Status404NotFound, new Response { Status = "Faild", Message = "Data Not Found!" });
             }
         }
 
@@ -78,16 +68,12 @@ namespace ProjectNS.Controllers
         {
             try
             {
-                if (!ModelState.IsValid)
-                {
-                    return StatusCode(StatusCodes.Status500InternalServerError, new Response { Status = "Error", Message = "Update Failed! Please check your details and try again." });
-                }
                 _recallinfoservice.UpdateRecallInfo(recallInfo);
-                return Ok(new Response { Status = "Success", Message = "Update RecallInfo    Details successfully!" });
+                return StatusCode(StatusCodes.Status200OK, new Response { Status = "Success", Message = "Details Added Successfully!" });
             }
-            catch (Exception ex)
+            catch (Exception)
             {
-                return NotFound(ex.Message);
+                return StatusCode(StatusCodes.Status404NotFound, new Response { Status = "Faild", Message = "Data Not Found!" });
             }
         }
 
@@ -97,16 +83,12 @@ namespace ProjectNS.Controllers
         {
             try
             {
-                if (!ModelState.IsValid)
-                {
-                    return StatusCode(StatusCodes.Status500InternalServerError, new Response { Status = "Error", Message = "Delete Failed! Please check your details and try again." });
-                }
                 _recallinfoservice.DeleteRecallInfo(RecallinfoId);
-                return Ok(new Response { Status = "Success", Message = "Delete RecallInfo Details Delete successfully!" });
+                return StatusCode(StatusCodes.Status200OK, new Response { Status = "Success", Message = "Details Added Successfully!" });
             }
-            catch (Exception ex)
+            catch (Exception)
             {
-                return NotFound(ex.Message);
+                return StatusCode(StatusCodes.Status404NotFound, new Response { Status = "Faild", Message = "Data Not Found!" });
             }
         }
     }

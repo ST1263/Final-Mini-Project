@@ -2,14 +2,14 @@
 using ProjectNS.ViewModel;
 using System.Collections.Generic;
 
-namespace ProjectNS.Interface
+namespace ProjectNS.InterfaceService
 {
-    public interface IRecallType
+    interface IRecallTypeService
     {
         public List<RecallTypeVM> RecallTypes();
         public RecallType RecallTypeById(int RecallTypeId);
-        public RecallType AddRecallType(RecallType recallType);
-        public RecallType UpdateRecallType(RecallType recallType);
+        public RecallType AddRecallType(RecallTypeVM recallTypeVM);
+        public RecallType UpdateRecallType(RecallTypeVM recallTypeVM);
         public void DeleteRecallType(int RecallTypeId);
     }
 }

@@ -1,10 +1,4 @@
-﻿using Microsoft.AspNetCore.Http;
-using ProjectNS.Model;
-using System;
-using System.Collections.Generic;
-using System.ComponentModel.DataAnnotations;
-using System.Linq;
-using System.Threading.Tasks;
+﻿using System.ComponentModel.DataAnnotations;
 
 namespace ProjectNS.ViewModel
 {
@@ -12,15 +6,15 @@ namespace ProjectNS.ViewModel
     {
         public int RecallInfoId { get; set; }
         public int RecallId { get; set; }
-        [MaxLength(30)]
+        [Required(ErrorMessage = "Please Enter Recall Name"), MaxLength(30)]
         public string RecallName { get; set; }
-        [MaxLength(30)]
+        [Required(ErrorMessage = "Please Enter Recall Type"), MaxLength(30)]
         public string RecallType { get; set; }
         public string RecallDate { get; set; }
         public int ZNumber { get; set; }
-        [MaxLength(30)]
+        [Required(ErrorMessage = "Please Enter FDA Classification"), MaxLength(30)]
         public string FDAClassification { get; set; }
-        [MaxLength(30)]
+        [Required(ErrorMessage = "Please Enter Recall Categories"), MaxLength(30)]
         public string RecallCategories { get; set; }
         [MaxLength(30)]
         public string RecallStatus { get; set; }

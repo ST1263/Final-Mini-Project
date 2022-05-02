@@ -11,44 +11,54 @@ namespace ProjectNS.Controllers
     [ApiController]
     public class RecallTypeController : Controller
     {
-        readonly RecallTypeService _recalltypeservice;
+        private readonly RecallTypeService _recalltypeservice;
         public RecallTypeController(RecallTypeService recalltypeservice)
         {
             _recalltypeservice = recalltypeservice;
         }
 
         [HttpGet]
-        [Route("GetRecallTypes")]
-        public IActionResult GetRecallTypes()
+        [Route("RecallTypes")]
+        public IActionResult RecallTypes()
         {
-            var allrecalltype = _recalltypeservice.GetRecallTypes();
-            return Ok(allrecalltype);
+            try
+            {
+                var recalllist = _recalltypeservice.RecallTypes();
+                return StatusCode(StatusCodes.Status200OK, recalllist);
+            }
+            catch (Exception)
+            {
+                return StatusCode(StatusCodes.Status404NotFound, new Response { Status = "Faild", Message = "Data Not Found!" });
+            }
         }
 
         [HttpGet]
-        [Route("GetRecallTypeById")]
-        public IActionResult GetRecallTypeById(int RecallTypeId)
+        [Route("RecallTypeById")]
+        public IActionResult RecallTypeById(int RecallTypeId)
         {
-            var result = _recalltypeservice.GetRecallTypeById(RecallTypeId);
-            return Ok(result);
+            try
+            {
+                var recallType = _recalltypeservice.RecallTypeById(RecallTypeId);
+                return StatusCode(StatusCodes.Status200OK, recallType);
+            }
+            catch (Exception)
+            {
+                return StatusCode(StatusCodes.Status404NotFound, new Response { Status = "Faild", Message = "Data Not Found!" });
+            }
         }
 
         [HttpPost]
         [Route("AddRecallType")]
         public IActionResult AddRecallType([FromBody] RecallTypeVM recallType)
         {
-            try
+           try
             {
-                if (!ModelState.IsValid)
-                {
-                    return StatusCode(StatusCodes.Status500InternalServerError, new Response { Status = "Error", Message = "RecallType Details Failed! Please check your details and try again." });
-                }
                 _recalltypeservice.AddRecallType(recallType);
-                return Ok(new Response { Status = "Success", Message = "RecallType Details Add successfully!" });
+                return StatusCode(StatusCodes.Status200OK, new Response { Status = "Success", Message = "Details Added Successfully!" });
             }
-            catch (Exception ex)
+            catch (Exception)
             {
-                return NotFound(ex.Message);
+                return StatusCode(StatusCodes.Status404NotFound, new Response { Status = "Faild", Message = "Data Not Found!" });
             }
         }
 
@@ -58,16 +68,12 @@ namespace ProjectNS.Controllers
         {
             try
             {
-                if (!ModelState.IsValid)
-                {
-                    return StatusCode(StatusCodes.Status500InternalServerError, new Response { Status = "Error", Message = "Update Failed! Please check your details and try again." });
-                }
                 _recalltypeservice.UpdateRecallType(recallType);
-                return Ok(new Response { Status = "Success", Message = "Update RecallType Details successfully!" });
+                return StatusCode(StatusCodes.Status200OK, new Response { Status = "Success", Message = "Details Added Successfully!" });
             }
-            catch (Exception ex)
+            catch (Exception)
             {
-                return NotFound(ex.Message);
+                return StatusCode(StatusCodes.Status404NotFound, new Response { Status = "Faild", Message = "Data Not Found!" });
             }
         }
 
@@ -77,16 +83,12 @@ namespace ProjectNS.Controllers
         {
             try
             {
-                if (!ModelState.IsValid)
-                {
-                    return StatusCode(StatusCodes.Status500InternalServerError, new Response { Status = "Error", Message = "Delete Failed! Please check your details and try again." });
-                }
                 _recalltypeservice.DeleteRecallType(RecallTypeId);
-                return Ok(new Response { Status = "Success", Message = "Delete RecallType Details Delete successfully!" });
+                return StatusCode(StatusCodes.Status200OK, new Response { Status = "Success", Message = "Details Added Successfully!" });
             }
-            catch (Exception ex)
+            catch (Exception)
             {
-                return NotFound(ex.Message);
+                return StatusCode(StatusCodes.Status404NotFound, new Response { Status = "Faild", Message = "Data Not Found!" });
             }
         }
     }

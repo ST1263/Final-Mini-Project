@@ -9,13 +9,13 @@ namespace ProjectNS.Repo
 {
     public class RecallCategoriesRepo:IRecallCategories
     {
-        NSDbContext _context;
+        private readonly NSDbContext _context;
         public RecallCategoriesRepo(NSDbContext context)
         {
             _context = context;
         }
 
-        public List<RecallCategoriesVM> GetRecallCategories()
+        public List<RecallCategoriesVM> RecallCategories()
         {
             return (from a in _context.RecallCategories
                     select new RecallCategoriesVM
@@ -26,7 +26,7 @@ namespace ProjectNS.Repo
                     }).ToList();
         }
 
-        public RecallCategories GetRecallCategoriesById(int RecallCategoriesId)
+        public RecallCategories RecallCategoriesById(int RecallCategoriesId)
         {
             return _context.RecallCategories.FirstOrDefault(a => a.RecallCategoriesId == RecallCategoriesId);
         }

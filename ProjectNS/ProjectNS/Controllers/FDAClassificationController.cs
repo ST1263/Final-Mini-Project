@@ -11,26 +11,40 @@ namespace ProjectNS.Controllers
     [ApiController]
     public class FDAClassificationController : Controller
     {
-        readonly FDAClassificationService _fdaclassificationservice;
+        private readonly FDAClassificationService _fdaclassificationservice;
         public FDAClassificationController(FDAClassificationService fdaclassificationservice)
         {
             _fdaclassificationservice = fdaclassificationservice;
         }
 
         [HttpGet]
-        [Route("GetFDAClassifications")]
-        public IActionResult GetFDAClassifications()
+        [Route("FDAClassifications")]
+        public IActionResult FDAClassifications()
         {
-            var allfdaclassification = _fdaclassificationservice.GetFDAClassifications();
-            return Ok(allfdaclassification);
+            try
+            {
+                var fdaclassificationlist = _fdaclassificationservice.FDAClassifications();
+                return StatusCode(StatusCodes.Status200OK, fdaclassificationlist);
+            }
+            catch (Exception)
+            {
+                return StatusCode(StatusCodes.Status404NotFound, new Response { Status = "Faild", Message = "Data Not Found!" });
+            }
         }
 
         [HttpGet]
-        [Route("GetFDAClassificationById")]
-        public IActionResult GetFDAClassificationById(int FDAClassificationId)
+        [Route("FDAClassificationById")]
+        public IActionResult FDAClassificationById(int FDAClassificationId)
         {
-            var result = _fdaclassificationservice.GetFDAClassificationById(FDAClassificationId);
-            return Ok(result);
+            try
+            {
+                var fdaclassification = _fdaclassificationservice.FDAClassificationById(FDAClassificationId);
+                return StatusCode(StatusCodes.Status200OK, fdaclassification);
+            }
+            catch (Exception)
+            {
+               return StatusCode(StatusCodes.Status404NotFound, new Response { Status = "Faild", Message = "Data Not Found!" });
+            }
         }
 
         [HttpPost]
@@ -39,16 +53,12 @@ namespace ProjectNS.Controllers
         {
             try
             {
-                if (!ModelState.IsValid)
-                {
-                    return StatusCode(StatusCodes.Status500InternalServerError, new Response { Status = "Error", Message = "FDA Classification Details Failed! Please check your details and try again." });
-                }
                 _fdaclassificationservice.AddFDAClassification(fDAClassification);
-                return Ok(new Response { Status = "Success", Message = "FDA Classification Details Add successfully!" });
+                return StatusCode(StatusCodes.Status200OK, new Response { Status = "Success", Message = "Details Added Successfully!" });
             }
-            catch (Exception ex)
+            catch (Exception)
             {
-                return NotFound(ex.Message);
+                return StatusCode(StatusCodes.Status404NotFound, new Response { Status = "Faild", Message = "Data Not Found!" });
             }
         }
 
@@ -58,16 +68,12 @@ namespace ProjectNS.Controllers
         {
             try
             {
-                if (!ModelState.IsValid)
-                {
-                    return StatusCode(StatusCodes.Status500InternalServerError, new Response { Status = "Error", Message = "Update Failed! Please check your details and try again." });
-                }
                 _fdaclassificationservice.UpdateFDAClassification(fDAClassification);
-                return Ok(new Response { Status = "Success", Message = "Update FDA Classification Details successfully!" });
+                return StatusCode(StatusCodes.Status200OK, new Response { Status = "Success", Message = "Details Updated Successfully!" });
             }
-            catch (Exception ex)
+            catch (Exception)
             {
-                return NotFound(ex.Message);
+                return StatusCode(StatusCodes.Status404NotFound, new Response { Status = "Faild", Message = "Data Not Found!" });
             }
         }
 
@@ -77,16 +83,12 @@ namespace ProjectNS.Controllers
         {
             try
             {
-                if (!ModelState.IsValid)
-                {
-                    return StatusCode(StatusCodes.Status500InternalServerError, new Response { Status = "Error", Message = "Delete Failed! Please check your details and try again." });
-                }
                 _fdaclassificationservice.DeleteFDAClassification(FDAClassificationId);
-                return Ok(new Response { Status = "Success", Message = "Delete FDA Classification Details Delete successfully!" });
+                return StatusCode(StatusCodes.Status200OK, new Response { Status = "Success", Message = "Details Deleted Successfully!" });
             }
-            catch (Exception ex)
+            catch (Exception)
             {
-                return NotFound(ex.Message);
+                return StatusCode(StatusCodes.Status404NotFound, new Response { Status = "Faild", Message = "Data Not Found!" });
             }
         }
     }

@@ -2,14 +2,15 @@
 using ProjectNS.ViewModel;
 using System.Collections.Generic;
 
-namespace ProjectNS.Interface
+
+namespace ProjectNS.InterfaceService
 {
-    public interface IRecallCategories
+    interface IRecallCategoriesService
     {
         public List<RecallCategoriesVM> RecallCategories();
         public RecallCategories RecallCategoriesById(int RecallCategoriesId);
-        public RecallCategories AddRecallCategories(RecallCategories recallCategories);
-        public RecallCategories UpdateRecallCategories(RecallCategories recallCategories);
+        public RecallCategories AddRecallCategories(RecallCategoriesVM recallCategoriesVM);
+        public RecallCategories UpdateRecallCategories(RecallCategoriesVM recallCategoriesVM);
         public void DeleteRecallCategories(int RecallCategoriesId);
     }
 }

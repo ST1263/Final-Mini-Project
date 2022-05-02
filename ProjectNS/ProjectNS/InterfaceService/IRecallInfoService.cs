@@ -2,14 +2,14 @@
 using ProjectNS.ViewModel;
 using System.Collections.Generic;
 
-namespace ProjectNS.Interface
+namespace ProjectNS.InterfaceService
 {
-    public interface IRecallInfo
+    interface IRecallInfoService
     {
         public List<RecallInfoVM> RecallInfos();
         public RecallInfo RecallInfoById(int RecallinfoId);
-        public RecallInfo AddRecallInfo(RecallInfo recallInfo);
-        public RecallInfo UpdateRecallInfo(RecallInfo recallInfo);
+        public RecallInfo AddRecallInfo(RecallInfoVM recallInfoVM);
+        public RecallInfo UpdateRecallInfo(RecallInfoVM recallInfoVM);
         public void DeleteRecallInfo(int RecallinfoId);
     }
 }

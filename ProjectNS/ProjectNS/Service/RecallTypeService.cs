@@ -1,4 +1,5 @@
 ﻿using ProjectNS.Interface;
+using ProjectNS.InterfaceService;
 using ProjectNS.Model;
 using ProjectNS.ViewModel;
 using System.Collections.Generic;
@@ -6,22 +7,22 @@ using System.Linq;
 
 namespace ProjectNS.Service
 {
-    public class RecallTypeService
+    public class RecallTypeService: IRecallTypeService
     {
-        IRecallType _recalltypeservice;
+        private readonly IRecallType _recalltypeservice;
         public RecallTypeService(IRecallType recalltypeservice)
         {
             _recalltypeservice = recalltypeservice;
         }
 
-        public List<RecallTypeVM> GetRecallTypes()
+        public List<RecallTypeVM> RecallTypes()
         {
-            return _recalltypeservice.GetRecallTypes().ToList();
+            return _recalltypeservice.RecallTypes().ToList();
         }
 
-        public RecallType GetRecallTypeById(int RecallTypeId)
+        public RecallType RecallTypeById(int RecallTypeId)
         {
-            return _recalltypeservice.GetRecallTypeById(RecallTypeId);
+            return _recalltypeservice.RecallTypeById(RecallTypeId);
         }
 
         public RecallType AddRecallType(RecallTypeVM recallTypeVM)

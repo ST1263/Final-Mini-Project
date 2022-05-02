@@ -2,14 +2,14 @@
 using ProjectNS.ViewModel;
 using System.Collections.Generic;
 
-namespace ProjectNS.Interface
+namespace ProjectNS.InterfaceService
 {
-    public interface IFDAClassification
+    interface IFDAClassificationService
     {
         public List<FDAClassificationVM> FDAClassifications();
         public FDAClassification FDAClassificationById(int FDAClassificationId);
-        public FDAClassification AddFDAClassification(FDAClassification fDAClassification);
-        public FDAClassification UpdateFDAClassification(FDAClassification fDAClassification);
+        public FDAClassification AddFDAClassification(FDAClassificationVM fDAClassificationVM);
+        public FDAClassification UpdateFDAClassification(FDAClassificationVM fDAClassificationVM);
         public void DeleteFDAClassification(int FDAClassificationId);
     }
 }

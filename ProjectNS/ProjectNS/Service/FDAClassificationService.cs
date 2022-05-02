@@ -1,4 +1,5 @@
 ﻿using ProjectNS.Interface;
+using ProjectNS.InterfaceService;
 using ProjectNS.Model;
 using ProjectNS.ViewModel;
 using System.Collections.Generic;
@@ -6,22 +7,22 @@ using System.Linq;
 
 namespace ProjectNS.Service
 {
-    public class FDAClassificationService
+    public class FDAClassificationService:IFDAClassificationService
     {
-        IFDAClassification _fdaclassificationservice;
+        private readonly IFDAClassification _fdaclassificationservice;
         public FDAClassificationService(IFDAClassification fdaclassificationservice)
         {
             _fdaclassificationservice = fdaclassificationservice;
         }
 
-        public List<FDAClassificationVM> GetFDAClassifications()
+        public List<FDAClassificationVM> FDAClassifications()
         {
-            return _fdaclassificationservice.GetFDAClassifications().ToList();
+            return _fdaclassificationservice.FDAClassifications().ToList();
         }
 
-        public FDAClassification GetFDAClassificationById(int FDAClassificationId)
+        public FDAClassification FDAClassificationById(int FDAClassificationId)
         {
-            return _fdaclassificationservice.GetFDAClassificationById(FDAClassificationId);
+            return _fdaclassificationservice.FDAClassificationById(FDAClassificationId);
         }
 
         public FDAClassification AddFDAClassification(FDAClassificationVM fDAClassificationVM)

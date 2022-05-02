@@ -11,15 +11,14 @@ namespace ProjectNS.Repo
 {
     public class RecallInfoRepo:IRecallInfo
     {
-        NSDbContext _context;
+        private readonly NSDbContext  _context;
         
         public RecallInfoRepo(NSDbContext context)
         {
-            _context = context;
-            
+            _context = context;    
         }
 
-        public List<RecallInfoVM> GetRecallInfos()
+        public List<RecallInfoVM> RecallInfos()
         {
             return (from a in _context.RecallInfo
                           select new RecallInfoVM
@@ -41,7 +40,7 @@ namespace ProjectNS.Repo
                           }).ToList();
         }   
 
-        public RecallInfo GetRecallInfoById(int RecallinfoId)
+        public RecallInfo RecallInfoById(int RecallinfoId)
         {
             return _context.RecallInfo.FirstOrDefault(a => a.RecallInfoId == RecallinfoId);
         }
